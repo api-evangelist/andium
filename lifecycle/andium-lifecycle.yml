@@ -1,0 +1,24 @@
+generated: '2026-08-06'
+method: probed
+source: https://shop.andium.com/.well-known/ucp
+versioning:
+  scheme: dated protocol version, negotiated via UCP discovery
+  current: '2026-04-08'
+  supported: ['2026-04-08', '2026-01-23']
+  discovery: https://shop.andium.com/.well-known/ucp
+  note: version-specific profiles are published at /.well-known/ucp/{version}
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: >-
+    No deprecation or sunset policy is published. The only observable signal is that UCP discovery
+    lists a previous protocol version (2026-01-23) alongside the current one.
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+status_page_probe:
+  - url: https://status.andium.com/
+    status: NXDOMAIN
+changelog: null
+deprecated_operations: []

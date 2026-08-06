@@ -1,0 +1,51 @@
+generated: '2026-08-06'
+method: searched
+source: https://shop.andium.com/
+summary: >-
+  Probed the /.well-known/ discovery surface on every reachable andium.com host. Only the Shopify
+  storefront host (shop.andium.com) serves discovery documents. No security.txt and no api-catalog
+  exist on any Andium host.
+hosts:
+  - host: https://shop.andium.com
+    documents:
+      - path: /.well-known/ucp
+        status: 200
+        file: andium-ucp.json
+        note: Universal Commerce Protocol merchant profile (services, capabilities, payment handlers)
+      - path: /.well-known/openid-configuration
+        status: 200
+        file: andium-openid-configuration.json
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        file: andium-oauth-authorization-server.json
+      - path: /.well-known/oauth-protected-resource
+        status: 200
+        file: andium-oauth-protected-resource.json
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://www.andium.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /llms.txt
+        status: 404
+  - host: https://ar.andium.com
+    documents:
+      - path: /.well-known/agent-card.json
+        status: 404
+  - host: https://learn.andium.com
+    documents:
+      - path: /.well-known/agent-card.json
+        status: 404

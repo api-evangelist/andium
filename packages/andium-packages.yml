@@ -1,0 +1,48 @@
+generated: '2026-08-06'
+method: searched
+source: https://downloads.arduino.cc/libraries/library_index.json
+summary: >-
+  Andium publishes no client SDK for any Andium API. What it does publish, first-party, are embedded
+  Arduino libraries from its hardware side — two of them registered in the Arduino Library Manager
+  index under an @andium.com maintainer address. They are client libraries for OTHER companies' APIs
+  (Philips Hue, Amazon Dash Replenishment) plus a board library for Andium's own Anduino shield.
+  Deliberately NOT wired as `SDKs` in apis.yml: none of them is a client for an Andium API.
+packages:
+  - language: c++
+    registry: arduino-library-manager
+    name: hueDino
+    version: 1.0.1
+    maintainer: Brian Carbonette <bcarbonette@andium.com>
+    url: https://github.com/andium/hueDino
+    description: Arduino library for WiFi101-connected devices implementing the Philips Hue API.
+    official: true
+    sdk_for_provider_api: false
+  - language: c++
+    registry: arduino-library-manager
+    name: AmazonDRS
+    version: 1.0.0
+    maintainer: Brian Carbonette <bcarbonette@andium.com>
+    url: https://github.com/andium/AmazonDRS
+    description: Arduino library for WiFi101-connected devices implementing the Amazon Dash Replenishment API.
+    official: true
+    sdk_for_provider_api: false
+  - language: c
+    registry: github
+    name: Anduino
+    url: https://github.com/andium/Anduino
+    description: Arduino library for the Andium (Anduino) shield; turns an Arduino into an AndiumNode.
+    official: true
+    sdk_for_provider_api: false
+    note: not published to the Arduino Library Manager index; source-only
+  - language: java
+    registry: github
+    name: libsuds
+    url: https://github.com/andium/libsuds
+    description: Java classes for creating and manipulating Unix domain sockets on *nix systems.
+    official: true
+    sdk_for_provider_api: false
+registries_probed:
+  - {registry: npm, query: andium, result: no first-party packages}
+  - {registry: pypi, name: andium, status: 404}
+  - {registry: arduino-library-manager, result: 2 first-party libraries}
+  - {registry: github, org: andium, result: 12 repos, 6 non-fork}

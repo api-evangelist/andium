@@ -1,0 +1,53 @@
+generated: '2026-08-06'
+method: searched
+source: https://shop.andium.com/agents.md
+applies_to: https://shop.andium.com/api/ucp/mcp
+authentication:
+  style: anonymous for reads; UCP agent profile URI required on every call; buyer approval required at payment
+  see: authentication/andium-authentication.yml
+idempotency:
+  supported: true
+  mechanism: request field
+  field: meta.idempotency-key
+  scope: complete_checkout
+  description: >-
+    The complete_checkout tool accepts meta.idempotency-key, "An idempotency key for completing the
+    checkout", so a retried completion does not place a duplicate order. It is the only tool in the
+    published tool set that declares an idempotency key.
+  evidence: mcp/andium-mcp-tools.json (complete_checkout.inputSchema.properties.meta.properties.idempotency-key)
+pagination:
+  documented: false
+  note: no pagination parameters or cursor fields are declared in the published tool schemas
+error_envelope:
+  format: json-rpc-2.0-error
+  shape: '{"jsonrpc":"2.0","id":<id>,"error":{"code":<int>,"message":<string>,"data":{"code":<slug>,"content":<string>,"continue_url":<url>}}}'
+  see: errors/andium-problem-types.yml
+rate_limiting:
+  documented: true
+  signal: HTTP 429
+  policy: 'per-IP rate limiting on the MCP endpoint; agents are instructed to back off on 429'
+  source: https://shop.andium.com/llms.txt
+versioning:
+  scheme: dated protocol versions negotiated through UCP discovery
+  current: '2026-04-08'
+  supported: ['2026-04-08', '2026-01-23']
+  discovery: https://shop.andium.com/.well-known/ucp
+  see: lifecycle/andium-lifecycle.yml
+buyer_context:
+  fields: [context.address_country, context.currency]
+  description: agents pass buyer country and currency for accurate pricing and availability
+human_in_the_loop:
+  required: true
+  scope: payment / checkout completion
+  policy: >-
+    Agents must not complete payment without explicit, contemporaneous buyer approval. Scripted form
+    fills and end-to-end agent flows that finalize payment are disallowed by the published robots.txt
+    and agent instructions.
+  source: https://shop.andium.com/robots.txt
+read_only_surface:
+  - 'GET /collections/all'
+  - 'GET /products/{handle}'
+  - 'GET /products/{handle}.json'
+  - 'GET /collections/{handle}/products.json'
+  - 'GET /search?q={query}&type=product'
+  - 'GET /sitemap.xml'

@@ -1,0 +1,49 @@
+generated: '2026-08-06'
+method: probed
+source: https://shop.andium.com/.well-known/ucp
+standards:
+  - id: mcp
+    name: Model Context Protocol
+    conforms: true
+    evidence: 'POST https://shop.andium.com/api/ucp/mcp tools/list returned 200 with 13 tools carrying JSON Schema 2020-12 inputSchema'
+  - id: ucp
+    name: Universal Commerce Protocol
+    conforms: true
+    version: '2026-04-08'
+    supported_versions: ['2026-04-08', '2026-01-23']
+    evidence: 'GET /.well-known/ucp returned a UCP merchant profile declaring dev.ucp.shopping services and capabilities'
+  - id: json-rpc-2.0
+    conforms: true
+    evidence: 'MCP endpoint speaks JSON-RPC 2.0; observed error object code -32001 with structured data'
+  - id: json-schema-2020-12
+    conforms: true
+    evidence: 'every MCP tool inputSchema declares $schema https://json-schema.org/draft/2020-12/schema'
+  - id: oidc-discovery
+    name: OpenID Connect Discovery 1.0
+    conforms: true
+    evidence: 'GET /.well-known/openid-configuration returned 200 with issuer, jwks_uri and scopes_supported'
+  - id: rfc8414-oauth-authorization-server-metadata
+    conforms: true
+    evidence: 'GET /.well-known/oauth-authorization-server returned 200'
+  - id: rfc9728-oauth-protected-resource-metadata
+    conforms: true
+    evidence: 'GET /.well-known/oauth-protected-resource returned 200 with resource + authorization_servers'
+  - id: rfc7636-pkce
+    conforms: true
+    evidence: 'code_challenge_methods_supported: [S256]'
+  - id: rfc9116-security-txt
+    conforms: false
+    evidence: '/.well-known/security.txt returned 404 on www.andium.com, andium.com and shop.andium.com'
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: 'errors are JSON-RPC error objects, not application/problem+json'
+  - id: openapi
+    conforms: false
+    evidence: 'no OpenAPI/Swagger document found on any andium.com host after full contract discovery'
+  - id: asyncapi
+    conforms: false
+    evidence: 'no event, streaming or webhook surface published'
+  - id: a2a
+    name: Agent2Agent
+    conforms: false
+    evidence: '/.well-known/agent-card.json and /.well-known/agent.json returned 404 on every reachable host'

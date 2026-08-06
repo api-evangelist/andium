@@ -1,0 +1,44 @@
+generated: '2026-08-06'
+method: probed
+source: https://shop.andium.com/.well-known/openid-configuration
+docs: https://shop.andium.com/agents.md
+summary:
+  types: [oauth2, openIdConnect, none]
+  api_key_in: []
+  oauth2_flows: [authorizationCode]
+  note: >-
+    Two distinct auth postures. The UCP/MCP shopping endpoint accepts anonymous tools/list and
+    catalog reads; transacting requires a UCP agent profile URI in meta.ucp-agent.profile and
+    explicit human approval at payment. Customer accounts use Shopify's hosted OIDC provider.
+schemes:
+  - name: none
+    type: none
+    applies_to: https://shop.andium.com/api/ucp/mcp (tools/list, search_catalog, lookup_catalog, get_product)
+    sources: [mcp/andium-mcp-tools.json]
+  - name: ucp-agent-profile
+    type: agentIdentity
+    description: >-
+      Every UCP tool call carries meta.ucp-agent.profile — a URI identifying the calling agent.
+      A missing or unresolvable profile returns JSON-RPC error -32001 invalid_profile_url.
+    required: true
+    sources: [mcp/andium-mcp-tools.json]
+  - name: shopify-customer-accounts
+    type: openIdConnect
+    issuer: https://shopify.com/authentication/85535392078
+    openIdConnectUrl: https://shop.andium.com/.well-known/openid-configuration
+    authorizationUrl: https://shopify.com/authentication/85535392078/oauth/authorize
+    tokenUrl: https://shopify.com/authentication/85535392078/oauth/token
+    jwks_uri: https://shopify.com/authentication/85535392078/.well-known/jwks.json
+    response_types: [code]
+    code_challenge_methods: [S256]
+    id_token_signing_alg: [RS256]
+    token_endpoint_auth_methods: [client_secret_basic]
+    sources: [well-known/andium-openid-configuration.json]
+x-evidence:
+  - url: https://shop.andium.com/.well-known/openid-configuration
+    http_status: 200
+  - url: https://shop.andium.com/.well-known/oauth-protected-resource
+    http_status: 200
+  - url: https://shop.andium.com/api/ucp/mcp
+    http_status: 200
+    note: tools/list succeeded anonymously

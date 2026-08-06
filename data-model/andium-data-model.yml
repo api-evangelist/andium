@@ -1,0 +1,42 @@
+generated: '2026-08-06'
+method: derived
+source: mcp/andium-mcp-tools.json
+note: >-
+  Derived from the JSON Schema 2020-12 inputSchemas returned live by the UCP/MCP endpoint. This is
+  the commerce domain of the Andium Store, not Andium's industrial monitoring domain — no schema for
+  wellsites, tanks, flares or emissions is published anywhere public.
+entities:
+  - name: cart
+    tools: [get_cart, create_cart, update_cart, cancel_cart]
+    key: id
+  - name: checkout
+    tools: [get_checkout, create_checkout, update_checkout, complete_checkout, cancel_checkout]
+    key: id
+  - name: order
+    tools: [get_order]
+    key: id
+  - name: product
+    tools: [get_product, lookup_catalog, search_catalog]
+    key: id
+  - name: variant
+    tools: [lookup_catalog, get_product]
+    key: id
+  - name: payment_instrument
+    embedded_in: checkout.payment.instruments
+    key: id
+    fields: [id, handler_id, type, billing_address]
+  - name: address
+    embedded_in:
+      - 'checkout.payment.instruments[].billing_address'
+      - 'checkout fulfillment (shipping address)'
+    fields: [street_address, extended_address, address_locality, address_region, postal_code, address_country, first_name, last_name]
+  - name: ucp_agent_profile
+    embedded_in: meta.ucp-agent
+    fields: [profile]
+relationships:
+  - {from: cart, to: checkout, type: has_one, via: 'cart converted to checkout via create_checkout'}
+  - {from: checkout, to: order, type: has_one, via: 'complete_checkout produces an order'}
+  - {from: checkout, to: payment_instrument, type: has_many, via: payment.instruments}
+  - {from: payment_instrument, to: address, type: has_one, via: billing_address}
+  - {from: cart, to: variant, type: has_many, via: line items}
+  - {from: product, to: variant, type: has_many, via: variants}

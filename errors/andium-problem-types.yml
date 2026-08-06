@@ -1,0 +1,26 @@
+generated: '2026-08-06'
+method: probed
+source: https://shop.andium.com/api/ucp/mcp
+format: json-rpc-2.0-error
+note: >-
+  Andium publishes no error reference. The entries below are error objects API Evangelist observed
+  directly from the live UCP/MCP endpoint, plus the rate-limit status the published agent
+  instructions name. This is not a complete catalog — only what was verifiably returned.
+envelope:
+  field: error
+  members: [code, message, data.code, data.content, data.continue_url]
+problems:
+  - code: -32001
+    data_code: invalid_profile_url
+    title: UCP discovery failed
+    detail: 'Unable to fetch agent profile: Missing profile uri'
+    http_status: 422
+    remediation: supply meta.ucp-agent.profile with a resolvable agent profile URI
+    observed: '2026-08-06'
+    source_operation: 'mcp/andium-mcp.yml#initialize'
+  - http_status: 429
+    title: Rate limited
+    detail: The MCP endpoint is rate-limited per IP.
+    remediation: back off and retry
+    source: https://shop.andium.com/llms.txt
+    observed: documented, not triggered

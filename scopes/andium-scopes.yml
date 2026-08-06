@@ -1,0 +1,32 @@
+generated: '2026-08-06'
+method: probed
+source: https://shop.andium.com/.well-known/openid-configuration
+summary: >-
+  Scopes come from the Shopify Customer Accounts OpenID provider advertised on shop.andium.com.
+  The UCP/MCP shopping endpoint itself is not OAuth-scoped — it is anonymous for reads and gated
+  by buyer approval for payment.
+schemes:
+  - name: shopify-customer-accounts
+    issuer: https://shopify.com/authentication/85535392078
+    source: well-known/andium-openid-configuration.json
+    flows:
+      - flow: authorizationCode
+        authorizationUrl: https://shopify.com/authentication/85535392078/oauth/authorize
+        tokenUrl: https://shopify.com/authentication/85535392078/oauth/token
+        pkce: S256
+scopes:
+  - scope: openid
+    description: OpenID Connect authentication; issues an ID token for the signed-in customer.
+    flows: [authorizationCode]
+  - scope: email
+    description: Access to the customer's email address claim.
+    flows: [authorizationCode]
+  - scope: customer-account-api:full
+    description: Full access to the Shopify Customer Account API on behalf of the signed-in customer.
+    flows: [authorizationCode]
+  - scope: customer-account-mcp-api:full
+    description: Full access to the Shopify Customer Account MCP API on behalf of the signed-in customer.
+    flows: [authorizationCode]
+x-evidence:
+  - url: https://shop.andium.com/.well-known/openid-configuration
+    http_status: 200

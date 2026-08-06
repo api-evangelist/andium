@@ -1,0 +1,24 @@
+generated: '2026-08-06'
+method: searched
+skills:
+  - file: andium-store-agents.md
+    name: Agent Instructions — Andium Store
+    method: searched
+    source: https://shop.andium.com/agents.md
+    description: >-
+      Andium's own published agent instructions for the shop.andium.com storefront: the UCP discovery
+      and MCP endpoints, the typical discover/search/cart/checkout/fulfill/complete flow, the
+      supported UCP versions, the buyer-approval rule, rate-limit guidance and the read-only browsing
+      surface. Mirrored verbatim from /agents.md (the same content is served at /llms.txt).
+    api: mcp/andium-mcp.yml
+    operations: [search_catalog, create_cart, create_checkout, update_checkout, complete_checkout]
+  - file: andium-store-buy-flow.md
+    name: Buy from the Andium Store
+    method: generated
+    source: mcp/andium-mcp-tools.json
+    description: >-
+      Packaged operating instructions for an agent transacting on the Andium Store, grounded in the
+      13 tool names and inputSchemas returned live by the UCP/MCP endpoint, plus the idempotency,
+      error-envelope and human-approval rules captured in conventions/ and errors/.
+    api: mcp/andium-mcp.yml
+    operations: [search_catalog, get_product, create_cart, update_cart, create_checkout, update_checkout, complete_checkout, get_order]

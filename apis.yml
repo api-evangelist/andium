@@ -1,23 +1,136 @@
 aid: andium
 name: Andium
-description: 'Andium is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  Andium is a New York City based industrial IoT company that combines its own hardware and AI
+  software into an end-to-end remote field monitoring platform for the energy sector. Its InSite
+  smart camera and edge software watch remote oil and gas wellsites for methane leaks, flare and
+  pilot-light outages, tank levels, liquid spills, fire and asset movement, and push real-time
+  alerts to operators instead of sending crews to look. The company reports cutting site
+  greenhouse-gas emissions by up to 65%, field operating costs by up to 45% and windshield time by
+  80%, and raised a $21.7M Series B led by Aramco Ventures. Andium publishes no public developer
+  program, documentation or specification for that monitoring platform; the only callable,
+  machine-readable API surface on any andium.com host is the Universal Commerce Protocol MCP
+  endpoint on its Shopify-backed merchandise storefront at shop.andium.com.
+image: https://images.prismic.io/andium/a928cac3-dcf8-4940-b631-975802d4ceb0_meta-image-whole-site.jpg?auto=compress,format
 url: https://raw.githubusercontent.com/api-evangelist/andium/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-06'
 modified: '2026-08-06'
 tags:
 - Company
-apis: []
+- Energy
+- Oil and Gas
+- Industrial IoT
+- Remote Monitoring
+- Methane Detection
+- Emissions
+- Computer Vision
+- Edge Computing
+- Commerce
+- Model Context Protocol
+apis:
+- aid: andium:store-ucp
+  name: Andium Store UCP / MCP
+  description: >-
+    The Universal Commerce Protocol shopping service on Andium's merchandise storefront, exposed as
+    a Model Context Protocol endpoint over JSON-RPC 2.0. Thirteen tools cover catalog search and
+    lookup, product detail, cart create/update/cancel, checkout create/update/complete/cancel and
+    order read, each with a full JSON Schema 2020-12 input schema returned live from tools/list.
+    Anonymous for reads; payment requires an explicit human approval step. The protocol
+    implementation is Shopify's native UCP support, served from an Andium-controlled host.
+  humanURL: https://shop.andium.com/agents.md
+  baseURL: https://shop.andium.com/api/ucp/mcp
+  tags:
+  - Commerce
+  - Model Context Protocol
+  - Universal Commerce Protocol
+  - Agents
+  properties:
+  - type: MCPServer
+    url: mcp/andium-mcp.yml
+  - type: Documentation
+    url: https://shop.andium.com/agents.md
+  - type: LLMsTxt
+    url: llms/andium-llms.txt
+  - type: Authentication
+    url: authentication/andium-authentication.yml
+  - type: OAuthScopes
+    url: scopes/andium-scopes.yml
+  - type: Conventions
+    url: conventions/andium-conventions.yml
+  - type: Idempotency
+    url: conventions/andium-conventions.yml
+  - type: ErrorCatalog
+    url: errors/andium-problem-types.yml
+  - type: DataModel
+    url: data-model/andium-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/andium-lifecycle.yml
+  - type: Conformance
+    url: conformance/andium-conformance.yml
+  - type: TermsOfService
+    url: https://shop.andium.com/policies/terms-of-service
+  - type: PrivacyPolicy
+    url: https://shop.andium.com/policies/privacy-policy
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/andium-domain-security.yml
 - type: Website
+  url: https://www.andium.com/
+- type: Blog
+  url: https://www.andium.com/blog
+- type: Press
+  url: https://www.andium.com/press
+- type: Support
+  url: https://www.andium.com/contact
+- type: TermsOfService
+  url: https://www.andium.com/andium-terms-of-service
+- type: PrivacyPolicy
+  url: https://www.andium.com/andium-privacy-statement
+- type: GitHubOrganization
+  url: https://github.com/andium
+- type: LinkedIn
+  url: https://www.linkedin.com/company/andium
+- type: Careers
+  url: https://ats.rippling.com/andium-careers/jobs
+- type: MCPServer
+  url: mcp/andium-mcp.yml
+- type: WellKnown
+  url: well-known/andium-well-known.yml
+- type: LLMsTxt
+  url: llms/andium-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Authentication
+  url: authentication/andium-authentication.yml
+- type: OAuthScopes
+  url: scopes/andium-scopes.yml
+- type: Conventions
+  url: conventions/andium-conventions.yml
+- type: Idempotency
+  url: conventions/andium-conventions.yml
+- type: ErrorCatalog
+  url: errors/andium-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/andium-lifecycle.yml
+- type: Conformance
+  url: conformance/andium-conformance.yml
+- type: DataModel
+  url: data-model/andium-data-model.yml
+- type: Packages
+  url: packages/andium-packages.yml
+- type: SecondaryMarket
   url: https://forgeglobal.com/andium_stock/
+
+x-enrichment:
+  date: '2026-08-06'
+  status: enriched
+  artifacts_added: 20
+  pass: local-v1
