@@ -26,6 +26,18 @@ tags:
 - Remote Monitoring
 - Methane Detection
 - Emissions
+- Computer-Vision
+- Edge Computing
+- Commerce
+- MCP
+tags_raw:
+- Company
+- Energy
+- Oil and Gas
+- Industrial IoT
+- Remote Monitoring
+- Methane Detection
+- Emissions
 - Computer Vision
 - Edge Computing
 - Commerce
@@ -43,6 +55,11 @@ apis:
   humanURL: https://shop.andium.com/agents.md
   baseURL: https://shop.andium.com/api/ucp/mcp
   tags:
+  - Commerce
+  - MCP
+  - Universal Commerce Protocol
+  - Agents
+  tags_raw:
   - Commerce
   - Model Context Protocol
   - Universal Commerce Protocol
