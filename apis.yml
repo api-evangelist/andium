@@ -11,6 +11,17 @@ description: >-
   program, documentation or specification for that monitoring platform; the only callable,
   machine-readable API surface on any andium.com host is the Universal Commerce Protocol MCP
   endpoint on its Shopify-backed merchandise storefront at shop.andium.com.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://images.prismic.io/andium/a928cac3-dcf8-4940-b631-975802d4ceb0_meta-image-whole-site.jpg?auto=compress,format
 url: https://raw.githubusercontent.com/api-evangelist/andium/refs/heads/main/apis.yml
 x-type: company
