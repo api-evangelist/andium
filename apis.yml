@@ -51,7 +51,7 @@ tags:
 - Remote Monitoring
 - Methane Detection
 - Emissions
-- Computer-Vision
+- Computer Vision
 - Edge Computing
 - Commerce
 - MCP
@@ -67,6 +67,7 @@ tags_raw:
 - Edge Computing
 - Commerce
 - Model Context Protocol
+- Computer-Vision
 apis:
 - aid: andium:store-ucp
   name: Andium Store UCP / MCP
@@ -116,6 +117,9 @@ apis:
     url: https://shop.andium.com/policies/terms-of-service
   - type: PrivacyPolicy
     url: https://shop.andium.com/policies/privacy-policy
+  x-surface: platform-generated
+  x-platform: shopify
+  x-platform-surface: ucp
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
